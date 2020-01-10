@@ -40,16 +40,17 @@ export class UserComponent implements OnInit {
     this.userService.deleteUser(user.id)
         .subscribe(() => {
           this.users = this.users.filter(u => u !== user);
-          console.log('Usuario eliminado')
-        })
+          console.log('Usuario eliminado');
+        });
   }
 
   showUser(user: User, onCreate: boolean) {
     this.onCreate = onCreate;
     if (user !== null) {
+      user.password = null;
       this.userSelected = user;
     } else {
-      this.userSelected = new User;
+      this.userSelected = new User();
     }
   }
 

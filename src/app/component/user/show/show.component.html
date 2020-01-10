@@ -1,64 +1,81 @@
 <div id="modalShowUser" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h5>Mostrar Usuario</h5>
-        <p>{{user.socialId}}</p>
-    </div>
-    <div class="modal-footer">
-        <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
+  <div class="modal-content">
+    <h5>Mostrar Usuario</h5>
+    <p>{{user.socialId}}</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
 </div>
 
 <div id="modalEditionUser" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h5>Editar Usuario</h5>
-        <p>{{user.socialId}}</p>
-    </div>
-    <div class="modal-footer">
-        <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
+  <div class="modal-content">
+    <h5>Editar Usuario</h5>
+    <p>{{user.socialId}}</p>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
 </div>
 
 <div id="modalCreationUser" class="modal bottom-sheet">
-    <div class="modal-content">
-        <h5>Crear Usuario</h5>
+  <div class="modal-content">
+    <h5>Crear Usuario</h5>
+    <div class="row">
+      <form #userForm="ngForm" class="col s12">
         <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12 m2">
-                        <input id="socialId" type="text" class="validate">
-                        <label for="socialId">RUT</label>
-                    </div>
-                    <div class="input-field col s12 m2">
-                        <input id="firstName" type="text" class="validate">
-                        <label for="firstName">Nombre</label>
-                    </div>
-                    <div class="input-field col s12 m2">
-                        <input id="lastName" type="text" class="validate">
-                        <label for="lastName">Apellido</label>
-                    </div>
-                    <div class="input-field col s12 m3">
-                        <input id="email" type="email" class="validate">
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="input-field col s12 m2">
-                        <input id="username" type="text" class="validate">
-                        <label for="username">Nombre Usuario</label>
-                    </div>
-                    <div class="input-field col s12 m2">
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Contraseña</label>
-                    </div>
-                    <div class="input-field col s12 m2">
-                        <input id="passwordVerified" type="password" class="validate">
-                        <label for="passwordVerified">Repita Contraseña</label>
-                    </div>
-                </div>
-            </form>
+          <div class="input-field col s12 m2">
+            <input id="socialId" type="text" class="validate" [(ngModel)]="user.socialId" name="socialId"
+                   #socialId="ngModel">
+            <label [ngClass]="{'active':this.user.socialId !== undefined}" for="socialId">RUT</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="firstName" type="text" class="validate" [(ngModel)]="user.firstName" name="firstName"
+                   #firstName="ngModel">
+            <label [ngClass]="{'active':this.user.firstName !== undefined}" for="firstName">Nombre</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="lastName" type="text" class="validate" [(ngModel)]="user.lastName" name="lastName"
+                   #lastName="ngModel">
+            <label [ngClass]="{'active':this.user.lastName !== undefined}" for="lastName">Apellido</label>
+          </div>
+          <div class="input-field col s12 m3">
+            <input id="email" type="email" class="validate" [(ngModel)]="user.email" name="email" #email="ngModel">
+            <label [ngClass]="{'active':this.user.email !== undefined}" for="email">Email</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="username" type="text" class="validate" [(ngModel)]="user.username" name="username"
+                   #username="ngModel">
+            <label [ngClass]="{'active':this.user.username !== undefined}" for="username">Nombre Usuario</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="password" type="password" class="validate" [(ngModel)]="user.password" name="password"
+                   #password="ngModel">
+            <label for="password">Contraseña</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <input id="passwordVerified" type="password" class="validate" [(ngModel)]="passwordVerified"
+                   name="passwordVerified">
+            <label for="passwordVerified">Repita Contraseña</label>
+          </div>
+          <div class="input-field col s12 m2">
+            <p>
+              <label>
+                <input type="checkbox" [(ngModel)]="user.enabled" name="enabled" #enabled="ngModel" />
+                <span>Usuario Habilitado</span>
+              </label>
+            </p>
+          </div>
         </div>
+      </form>
     </div>
-    <div class="modal-footer">
-        <a class="waves-effect waves-light btn-small blue-grey">Crear</a>&nbsp;
-        <a class="modal-close waves-effect waves-light btn-small red darken-2">Cancelar</a>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-light btn-small blue-grey" *ngIf="!user.id else elseBlock" (click)="create()">Crear</a>&nbsp;
+    <ng-template #elseBlock>
+      <a class="modal-close waves-effect waves-light btn-small blue-grey" (click)="update()">Editar</a>
+    </ng-template>
+    <a class="modal-close waves-effect waves-light btn-small red darken-2">Cancelar</a>
+  </div>
 </div>
 

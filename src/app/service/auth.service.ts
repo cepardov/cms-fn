@@ -56,7 +56,7 @@ export class AuthService {
     const payload = this.getTokenData(accessToken);
     this.user = new User();
     this.user.firstName = payload.firstname;
-    this.user.lastname = payload.lastname;
+    this.user.lastName = payload.lastname;
     this.user.roles = payload.authorities;
     sessionStorage.setItem('user', JSON.stringify(this.user));
   }
