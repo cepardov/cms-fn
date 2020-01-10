@@ -13,6 +13,8 @@ export class UserComponent implements OnInit {
 
   users: User[];
   paginator: any;
+  userSelected: User;
+  onCreate: boolean;
 
   constructor(
       private userService: UserService,
@@ -32,6 +34,23 @@ export class UserComponent implements OnInit {
         this.paginator = response;
       });
     });
+  }
+
+  delete(user: User): void {
+    this.userService.deleteUser(user.id)
+        .subscribe(() => {
+          this.users = this.users.filter(u => u !== user);
+          console.log('Usuario eliminado')
+        })
+  }
+
+  showUser(user: User, onCreate: boolean) {
+    this.onCreate = onCreate;
+    if (user !== null) {
+      this.userSelected = user;
+    } else {
+      this.userSelected = new User;
+    }
   }
 
 }

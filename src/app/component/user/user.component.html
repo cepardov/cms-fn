@@ -14,14 +14,36 @@
 
         <tbody>
         <tr *ngFor="let user of users">
-            <td>1</td>
-            <td>123456789</td>
-            <td>Nombre</td>
-            <td>Apellido</td>
-            <td>Correo</td>
-            <td>Usuario</td>
-            <td>Si</td>
+            <td>{{user.id}}</td>
+            <td>{{user.socialId}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.enabled}}</td>
+            <td>
+                <a class="waves-effect waves-light btn-floating btn-small modal-trigger" href="#modalShowUser" (click)="showUser(user, false)">
+                    <i class="material-icons right">visibility</i>
+                </a>
+            </td>
+            <td>
+                <a class="waves-effect waves-light btn-floating btn-small modal-trigger yellow darken-4" href="#modalEditionUser" (click)="showUser(user, false)">
+                    <i class="material-icons right">edit</i>
+                </a>
+            </td>
+            <td>
+                <a class="waves-effect waves-light btn-floating btn-small modal-trigger red" (click)="delete(user)" >
+                    <i class="material-icons right">delete</i>
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<div class="fixed-action-btn">
+    <a class="waves-effect waves-light btn-floating modal-trigger blue-grey" href="#modalCreationUser" (click)="showUser(null, true)">
+        <i class="material-icons right">add</i>
+    </a>
+</div>
+<app-show *ngIf="userSelected || onCreate" [user]="userSelected"></app-show>
