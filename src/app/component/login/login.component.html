@@ -2,15 +2,15 @@
   <div class="col s12 m4"></div>
   <div class="col s12 m4">
     <div class="card-panel grey lighten-5">
-      <form>
+      <form method="post">
         <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
+            <input [(ngModel)]="user.username" name="username" id="username" type="text"  class="validate">
+            <label for="username">Nombre Usuario</label>
           </div>
           <div class="input-field col s12">
-            <input id="password" type="password" class="validate">
-            <label for="password">Password</label>
+            <input [(ngModel)]="user.password" name="password" id="password" type="password" class="validate">
+            <label for="password">Contraseña</label>
           </div>
           <div class="input-field col s12">
             <button (click)="login()" class="btn waves-effect waves-light" type="submit">Submit

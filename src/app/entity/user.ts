@@ -4,8 +4,9 @@ export class User {
   firstName: string;
   lastname: string;
   email: string;
+  username: string;
   password: string;
   enabled: boolean;
   createAt: string;
-
+  roles: string[] = [];
 }
