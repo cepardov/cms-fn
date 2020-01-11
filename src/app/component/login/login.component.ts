@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../entity/user";
-import {AuthService} from "../../service/auth.service";
-import {Router} from "@angular/router";
+import {User} from '../../entity/user';
+import {AuthService} from '../../service/auth.service';
+import {Router} from '@angular/router';
+import * as M from 'materialize-css';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +13,8 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   user: User;
+  loginForm: NgForm;
+  validate: boolean;
 
   constructor(
       private authService: AuthService,
@@ -35,13 +39,23 @@ export class LoginComponent implements OnInit {
       this.authService.saveUser(response.access_token);
       this.authService.saveToken(response.access_token);
       const usuario = this.authService.getUser;
+      console.log(usuario)
       this.router.navigate(['/'])
-      console.log('Usuario autenticado')
+      M.toast({
+        displayLength: '5000',
+        html: '<i class="material-icons icon green-textt">info</i>&nbsp;Bienvenido '
+      });
     }, err => {
+      this.user.password = null;
+      this.validate = false;
       if (err.status === 400) {
+        M.toast({
+          displayLength: '5000',
+          html: '<i class="material-icons icon red-text">error</i>&nbsp;Usuario o contraseña incorrectas'
+        });
         console.log('Usuario o clave incorrecta');
       }
-    })
+    });
   }
 
 }
