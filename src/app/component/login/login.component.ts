@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService.login(this.user).subscribe(response => {
-
+    this.authService.login(this.user)
+      .subscribe(response => {
       this.authService.saveUser(response.access_token);
       this.authService.saveToken(response.access_token);
       const usuario = this.authService.getUser;

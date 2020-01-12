@@ -3,7 +3,7 @@ import * as M from 'materialize-css';
 import {User} from '../../../entity/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../service/user.service';
-import {UserComponent} from "../user.component";
+import {UserComponent} from '../user.component';
 
 @Component({
   selector: 'app-show',
@@ -56,7 +56,6 @@ export class ShowComponent implements OnInit {
   }
 
   update(): void {
-    console.log('asd:' + this.user.enabled)
     this.userService.updateUser(this.user)
       .subscribe(
         json => {
