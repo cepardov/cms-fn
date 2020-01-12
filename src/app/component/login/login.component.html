@@ -5,13 +5,15 @@
       <form method="post" #loginrForm="ngForm">
         <div class="row">
           <div class="input-field col s12">
-            <input [(ngModel)]="user.username" name="username" id="username" type="text"  class="validate">
+            <input [(ngModel)]="user.username" name="username" id="username" type="text"  class=""
+                   [ngClass]="{'invalid':this.validateUser === false}"
+                   (focus)="this.validateUser = null">
             <label for="username">Nombre Usuario</label>
           </div>
           <div class="input-field col s12">
             <input [(ngModel)]="user.password" name="password" id="password" type="password" class=""
-                   [ngClass]="{'invalid':this.validate === false}"
-                    (focus)="this.validate = null">
+                   [ngClass]="{'invalid':this.validatePass === false}"
+                    (focus)="this.validatePass = null">
             <label for="password">Contraseña</label>
           </div>
           <div class="input-field col s12">

@@ -13,8 +13,8 @@ import {NgForm} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   user: User;
-  loginForm: NgForm;
-  validate: boolean;
+  validateUser: boolean;
+  validatePass: boolean;
 
   constructor(
       private authService: AuthService,
@@ -27,33 +27,42 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.user);
-    if (this.user.username == null || this.user.password == null) {
-      console.log('Email o contraseña vacio.')
+    if (this.user.username == null) {
+      this.validateUser = false;
+      M.toast({
+        displayLength: '5000',
+        html: '<i class="material-icons icon yellow-text">warning</i>&nbsp;Ingrese su nombre de usuario'
+      });
+      return;
+    }
+
+    if (this.user.password == null) {
+      this.validatePass = false;
+      M.toast({
+        displayLength: '5000',
+        html: '<i class="material-icons icon yellow-text">warning</i>&nbsp;Ingrese su contraseña'
+      });
       return;
     }
 
     this.authService.login(this.user).subscribe(response => {
-      console.log('Login Response' + response);
 
       this.authService.saveUser(response.access_token);
       this.authService.saveToken(response.access_token);
       const usuario = this.authService.getUser;
-      console.log(usuario)
-      this.router.navigate(['/'])
+      this.router.navigate(['/']);
       M.toast({
         displayLength: '5000',
-        html: '<i class="material-icons icon green-textt">info</i>&nbsp;Bienvenido '
+        html: '<i class="material-icons icon green-textt">info</i>&nbsp;Bienvenido ' + usuario.firstName + ' ' + usuario.lastName
       });
     }, err => {
       this.user.password = null;
-      this.validate = false;
+      this.validatePass = false;
       if (err.status === 400) {
         M.toast({
           displayLength: '5000',
           html: '<i class="material-icons icon red-text">error</i>&nbsp;Usuario o contraseña incorrectas'
         });
-        console.log('Usuario o clave incorrecta');
       }
     });
   }

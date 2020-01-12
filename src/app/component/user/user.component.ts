@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../entity/user";
-import {UserService} from "../../service/user.service";
-import {ActivatedRoute} from "@angular/router";
-import {catchError, tap} from "rxjs/operators";
+import {Component, OnChanges, OnInit} from '@angular/core';
+import {User} from '../../entity/user';
+import {UserService} from '../../service/user.service';
+import {ActivatedRoute} from '@angular/router';
+import {catchError, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -22,6 +22,10 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadUsers();
+  }
+
+  loadUsers() {
     this.activatedRoute.paramMap.subscribe(params => {
       let page: number = +params.get('page');
 

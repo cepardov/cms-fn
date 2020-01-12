@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from '../entity/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from "../../environments/environment";
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -55,8 +55,8 @@ export class AuthService {
   saveUser(accessToken: string) {
     const payload = this.getTokenData(accessToken);
     this.user = new User();
-    this.user.firstName = payload.firstname;
-    this.user.lastName = payload.lastname;
+    this.user.firstName = payload.first_name;
+    this.user.lastName = payload.last_name;
     this.user.roles = payload.authorities;
     sessionStorage.setItem('user', JSON.stringify(this.user));
   }

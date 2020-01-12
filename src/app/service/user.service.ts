@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../environments/environment";
-import {User} from "../entity/user";
-import {HttpClient} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError, map, tap} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {RoleService} from "./role.service";
+import {environment} from '../../environments/environment';
+import {User} from '../entity/user';
+import {HttpClient} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {RoleService} from './role.service';
+import * as M from 'materialize-css';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +70,7 @@ export class UserService {
     return this.http.get<User>(`${this.urlEndpoint}/${id}`)
         .pipe(
             catchError(e => {
-              if (e.status != 401 && e.error.message) {
+              if (e.status !== 401 && e.error.message) {
                 this.router.navigate(['/users']);
               }
               return throwError(e);
