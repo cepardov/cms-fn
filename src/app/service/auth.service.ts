@@ -13,7 +13,7 @@ export class AuthService {
   private  urlEndpoint: string = environment.endpointUrl + '/oauth/token';
 
   private user: User;
-  private token: string;
+  token: string;
 
   constructor(
     private http: HttpClient
