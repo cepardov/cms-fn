@@ -1,0 +1,53 @@
+.post {
+  position: relative;
+  margin-top: 10px;
+  height: 200px;
+  overflow: hidden;
+  box-shadow: 0px 0px 4px #000000;
+  background-color: #c3c3c3;
+
+  -moz-transition: all .5s;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.post-title {
+  position: relative;
+}
+
+.post img {
+  width: 100%;
+  filter: grayscale(50%);
+
+  transform: translateY(-18%) scale(1.5);
+  -moz-transform: translateY(-18%) scale(1.5);
+  -webkit-transform: translateY(-18%) scale(1.5);
+
+  -moz-transition: all .5s;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.post:hover {
+  box-shadow: 0px 0px 15px #000000;
+}
+.post:hover img {
+  filter: grayscale(0%);
+}
+
+.text-block {
+  position: absolute;
+  bottom: -12px;
+  width: 100%;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-shadow: 1px 1px 5px #000000;
+  font-weight: bold;
+
+  background: gray; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(bottom,rgba(255,0,0,0), rgb(0, 0, 0)); /*Safari 5.1-6*/
+  background: -o-linear-gradient(bottom,rgba(255,0,0,0), rgb(0, 0, 0)); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(bottom,rgba(255,0,0,0), rgb(0, 0, 0)); /*Fx 3.6-15*/
+  background: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0, 0, 0)); /*Standard*/
+}

@@ -11,6 +11,7 @@ import { LoginComponent } from './component/login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ShowComponent } from './component/user/show/show.component';
+import { PostComponent } from './component/post/post.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ShowComponent } from './component/user/show/show.component';
     FooterComponent,
     UserComponent,
     LoginComponent,
-    ShowComponent
+    ShowComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

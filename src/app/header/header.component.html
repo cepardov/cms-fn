@@ -29,6 +29,7 @@
   </li>
   <li routerLinkActive="active"><a [routerLink]="['/home']">Inicio</a></li>
   <li *ngIf="authService.isAuthenticated()" routerLinkActive="active"><a [routerLink]="['/users']">Usuarios</a></li>
+  <li routerLinkActive="active"><a [routerLink]="['/post']">Noticias</a></li>
   <li *ngIf="authService.isAuthenticated()" routerLinkActive="active"><a (click)="authService.logout()">Logout</a></li>
   <li *ngIf="!authService.isAuthenticated()" routerLinkActive="active"><a [routerLink]="['/login']">Login</a></li>
 </ul>
